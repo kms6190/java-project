@@ -1,6 +1,7 @@
 package jubeat_project;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -22,8 +23,15 @@ public class Jubeat_Game extends JFrame {
 
 	private ImageIcon exitButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/exitButtonEntered.png"));
 	private ImageIcon exitButtonBasicImage = new ImageIcon(Main.class.getResource("../images/exitButtonBasic.png"));
+	private ImageIcon startButtonBasicImage = new ImageIcon(Main.class.getResource("../images/startButtonBasic.png"));
+	private ImageIcon startButtonEnteredImage = new ImageIcon(
+			Main.class.getResource("../images/startButtonEntered.png"));
+	private ImageIcon quitButtonBasicImage = new ImageIcon(Main.class.getResource("../images/quitButtonBasic.png"));
+	private ImageIcon quitButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/quitButtonEntered.png"));
 
 	private JButton exitButton = new JButton(exitButtonBasicImage);
+	private JButton startButton = new JButton(startButtonBasicImage);
+	private JButton quitButton = new JButton(quitButtonBasicImage);
 
 	private int mouseX, mouseY;
 
@@ -46,11 +54,13 @@ public class Jubeat_Game extends JFrame {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				exitButton.setIcon(exitButtonEnteredImage);
+				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
 				exitButton.setIcon(exitButtonBasicImage);
+				exitButton.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 
 			@Override
@@ -58,7 +68,52 @@ public class Jubeat_Game extends JFrame {
 				System.exit(0);
 			}
 		});
+		exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(exitButton);
+		
+		startButton.setBounds(1245, 0, 30, 30);
+		startButton.setBorderPainted(false);
+		startButton.setContentAreaFilled(false);
+		startButton.setFocusPainted(false);
+		startButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				startButton.setIcon(startButtonEnteredImage);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				startButton.setIcon(startButtonBasicImage);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		add(startButton);
+		
+		quitButton.setBounds(1245, 0, 30, 30);
+		quitButton.setBorderPainted(false);
+		quitButton.setContentAreaFilled(false);
+		quitButton.setFocusPainted(false);
+		quitButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				quitButton.setIcon(quitButtonEnteredImage);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				quitButton.setIcon(quitButtonBasicImage);
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		add(quitButton);
 
 		menuBar.setBounds(0, 0, 1280, 30);
 		menuBar.addMouseListener(new MouseAdapter() {
