@@ -20,6 +20,7 @@ public class Jubeat_Game extends JFrame {
 
 	private Image introBackground = new ImageIcon(Main.class.getResource("../images/introBackground.jpg")).getImage();
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/menuBar.png")));
+	private JButton exitButton = new JButton(new ImageIcon(Main.class.getResource("../images/exitButtonBasic.png")));
 
 	private ImageIcon exitButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/exitButtonEntered.png"));
 	private ImageIcon exitButtonBasicImage = new ImageIcon(Main.class.getResource("../images/exitButtonBasic.png"));
@@ -29,7 +30,7 @@ public class Jubeat_Game extends JFrame {
 	private ImageIcon quitButtonBasicImage = new ImageIcon(Main.class.getResource("../images/quitButtonBasic.png"));
 	private ImageIcon quitButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/quitButtonEntered.png"));
 
-	private JButton exitButton = new JButton(exitButtonBasicImage);
+//	private JButton exitButton = new JButton(exitButtonBasicImage);
 	private JButton startButton = new JButton(startButtonBasicImage);
 	private JButton quitButton = new JButton(quitButtonBasicImage);
 
@@ -46,15 +47,37 @@ public class Jubeat_Game extends JFrame {
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
 
+		menuBar.setBounds(0, 0, 1280, 30);
+		menuBar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				mouseX = e.getX();
+				mouseY = e.getY();
+			}
+		});
+		menuBar.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				int x = e.getXOnScreen();
+				int y = e.getYOnScreen();
+				setLocation(x - mouseX, y - mouseY);
+			}
+		});
+		add(menuBar);
+
 		exitButton.setBounds(1245, 0, 30, 30);
 		exitButton.setBorderPainted(false);
 		exitButton.setContentAreaFilled(false);
 		exitButton.setFocusPainted(false);
+		add(exitButton);
+
 		exitButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				exitButton.setIcon(exitButtonEnteredImage);
 				exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+				Music buttonEnteredMusic = new Music("buttonEnteredMusic.mp3", false);
+				buttonEnteredMusic.start();
 			}
 
 			@Override
@@ -65,12 +88,19 @@ public class Jubeat_Game extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Music buttonEnteredMusic = new Music("buttonpressedMusic.mp3", false);
+				buttonEnteredMusic.start();
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
 				System.exit(0);
 			}
 		});
 		exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(exitButton);
-		
+
 		startButton.setBounds(1245, 0, 30, 30);
 		startButton.setBorderPainted(false);
 		startButton.setContentAreaFilled(false);
@@ -92,7 +122,7 @@ public class Jubeat_Game extends JFrame {
 			}
 		});
 		add(startButton);
-		
+
 		quitButton.setBounds(1245, 0, 30, 30);
 		quitButton.setBorderPainted(false);
 		quitButton.setContentAreaFilled(false);
