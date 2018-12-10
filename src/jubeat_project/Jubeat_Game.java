@@ -20,17 +20,17 @@ public class Jubeat_Game extends JFrame {
 
 	private Image introBackground = new ImageIcon(Main.class.getResource("../images/introBackground.jpg")).getImage();
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/menuBar.png")));
-	private JButton exitButton = new JButton(new ImageIcon(Main.class.getResource("../images/exitButtonBasic.png")));
-
+	
 	private ImageIcon exitButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/exitButtonEntered.png"));
 	private ImageIcon exitButtonBasicImage = new ImageIcon(Main.class.getResource("../images/exitButtonBasic.png"));
+	
 	private ImageIcon startButtonBasicImage = new ImageIcon(Main.class.getResource("../images/startButtonBasic.png"));
 	private ImageIcon startButtonEnteredImage = new ImageIcon(
 			Main.class.getResource("../images/startButtonEntered.png"));
 	private ImageIcon quitButtonBasicImage = new ImageIcon(Main.class.getResource("../images/quitButtonBasic.png"));
 	private ImageIcon quitButtonEnteredImage = new ImageIcon(Main.class.getResource("../images/quitButtonEntered.png"));
 
-//	private JButton exitButton = new JButton(exitButtonBasicImage);
+	private JButton exitButton = new JButton(exitButtonBasicImage);
 	private JButton startButton = new JButton(startButtonBasicImage);
 	private JButton quitButton = new JButton(quitButtonBasicImage);
 
@@ -101,7 +101,7 @@ public class Jubeat_Game extends JFrame {
 		exitButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		add(exitButton);
 
-		startButton.setBounds(1245, 0, 30, 30);
+		startButton.setBounds(900, 200, 400, 100);
 		startButton.setBorderPainted(false);
 		startButton.setContentAreaFilled(false);
 		startButton.setFocusPainted(false);
@@ -123,7 +123,7 @@ public class Jubeat_Game extends JFrame {
 		});
 		add(startButton);
 
-		quitButton.setBounds(1245, 0, 30, 30);
+		quitButton.setBounds(900, 330, 400, 100);
 		quitButton.setBorderPainted(false);
 		quitButton.setContentAreaFilled(false);
 		quitButton.setFocusPainted(false);
@@ -140,6 +140,11 @@ public class Jubeat_Game extends JFrame {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ex) {
+					ex.printStackTrace();
+				}
 				System.exit(0);
 			}
 		});
